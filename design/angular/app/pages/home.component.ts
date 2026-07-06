@@ -1,0 +1,115 @@
+import { Component } from '@angular/core';
+import { RouterLink }                  from '@angular/router';
+import { NavComponent }                from '../shared/nav.component';
+import { FooterComponent }             from '../shared/footer.component';
+import { RevealDirective }             from '../shared/reveal.directive';
+import { DEFAULT_PROFILE_ID, profile } from '../data/portfolio';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [RouterLink, NavComponent, FooterComponent, RevealDirective],
+  template: `
+    <div class="min-h-screen flex flex-col">
+      <app-nav [profileId]="profileId"></app-nav>
+
+      <main class="flex-1">
+        <!-- HERO -->
+        <section class="max-w-shell mx-auto px-8 pt-[120px] pb-24">
+          <div appReveal>
+            <div class="flex items-center gap-3.5 mb-10">
+              <span
+                class="w-2 h-2 rounded-full bg-accent shadow-[0_0_12px_oklch(77%_0.152_181.912_/_0.8)]"
+              ></span>
+              <span class="font-mono text-[13px] tracking-[0.04em] text-muted">{{
+                status
+              }}</span>
+            </div>
+            <h1
+              class="font-display font-semibold leading-[1.02] tracking-[-0.03em] text-[clamp(40px,7vw,84px)] max-w-[15ch] text-balance"
+            >
+              I build <span class="text-accent">reliable systems</span> and
+              <span class="text-secondary">thoughtful interfaces</span>.
+            </h1>
+            <p class="mt-8 max-w-[56ch] text-[19px] leading-relaxed text-content/[0.78] font-light">
+              {{ bio }}
+            </p>
+            <div class="mt-11 flex flex-wrap gap-3.5">
+              <a
+                [routerLink]="['/profiles', profileId]"
+                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] bg-primary text-primary-content font-medium text-[15px] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_30px_oklch(58%_0.233_277.117_/_0.35)]"
+                >View profile <span class="font-mono">→</span></a
+              >
+              <a
+                [routerLink]="['/profiles', profileId, 'articles']"
+                class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] border border-white/[0.16] font-medium text-[15px] transition-colors hover:bg-white/[0.05] hover:border-white/[0.3]"
+                >Read articles</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- QUICK LINKS -->
+        <section class="max-w-shell mx-auto px-8 pb-20">
+          <div appReveal class="flex items-baseline justify-between mb-7">
+            <h2 class="font-mono text-[13px] tracking-[0.08em] text-muted">/ EXPLORE</h2>
+            <span class="font-mono text-[13px] text-faint">03 sections</span>
+          </div>
+          <div class="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
+            @for (link of links; track link.label) {
+              <a
+                appReveal
+                [routerLink]="link.route"
+                class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300"
+              >
+                <div class="flex items-center justify-between mb-12">
+                  <span
+                    class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm"
+                    [class]="link.badgeClass"
+                    >{{ link.num }}</span
+                  >
+                  <span class="font-mono text-lg text-faint">↗</span>
+                </div>
+                <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
+                  {{ link.title }}
+                </h3>
+                <p class="text-[14.5px] leading-normal text-muted font-light">{{ link.desc }}</p>
+              </a>
+            }
+          </div>
+        </section>
+      </main>
+
+      <app-footer></app-footer>
+    </div>
+  `,
+})
+export class HomeComponent {
+  readonly profileId = DEFAULT_PROFILE_ID;
+  readonly status = profile.status;
+  readonly bio = profile.bio;
+
+  readonly links = [
+    {
+      num: '01',
+      title: 'Profile',
+      desc: 'Career summary, skills, certifications, education, and social links.',
+      route: ['/profiles', this.profileId],
+      badgeClass: 'bg-secondary/[0.14] text-secondary',
+    },
+    {
+      num: '02',
+      title: 'Work & Projects',
+      desc: 'Full career timeline with project detail, imagery, and tech stacks.',
+      route: ['/profiles', this.profileId, 'projects'],
+      badgeClass: 'bg-primary/[0.16] text-primary',
+    },
+    {
+      num: '03',
+      title: 'Articles',
+      desc: 'Writing on distributed systems, developer experience, and craft.',
+      route: ['/profiles', this.profileId, 'articles'],
+      badgeClass: 'bg-accent/[0.14] text-accent',
+    },
+  ];
+}

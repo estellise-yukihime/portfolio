@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: oklch(21.15% 0.012 254.09); color: oklch(98% 0.003 247.858); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: oklch(58% 0.233 277.117 / 0.35); }
+  @keyframes revUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  [data-reveal] { opacity: 0; }
+  [data-reveal][data-shown] { animation: revUp .7s cubic-bezier(.2,.7,.2,1) both; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: oklch(21.15% 0.012 254.09 / 0.72); border-bottom: 1px solid oklch(100% 0 0 / 0.07);">
+    <nav style="max-width: 1120px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="Home.dc.html" style="display: flex; align-items: center; gap: 12px;">
+        <span style="width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: oklch(58% 0.233 277.117); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: oklch(96% 0.018 272.314);">MC</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em;">Maya Chen</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="Home.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Home</a>
+        <a href="Profile.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Profile</a>
+        <a href="Projects.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Work</a>
+        <a href="Articles.dc.html" style="font-size: 14px; color: oklch(98% 0.003 247.858);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Articles</a>
+        <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; padding: 8px 14px; border: 1px solid oklch(100% 0 0 / 0.16); border-radius: 999px; color: oklch(98% 0.003 247.858);" onMouseOver="{{ pillOn }}" onMouseOut="{{ pillOff }}">Résumé ↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="flex: 1;">
+
+    <!-- HEADER -->
+    <section style="max-width: 820px; margin: 0 auto; padding: 80px 32px 40px;">
+      <div data-reveal>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.04em; color: oklch(77% 0.152 181.912);">ARTICLES</span>
+        <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(34px, 5vw, 56px); letter-spacing: -0.02em; margin-top: 10px; line-height: 1.03;">Writing</h1>
+        <p style="max-width: 56ch; font-size: 17px; line-height: 1.6; color: oklch(76% 0.012 252); margin-top: 18px; font-weight: 300;">Notes on distributed systems, developer experience, and the craft of keeping software boring in the best way.</p>
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section style="max-width: 820px; margin: 0 auto; padding: 12px 32px 80px;">
+      <div style="display: flex; flex-direction: column;">
+
+        <a href="Article.dc.html" data-reveal style="display: block; padding: 32px 0; border-top: 1px solid oklch(100% 0 0 / 0.08); transition: padding-left .25s ease;" onMouseOver="{{ rowOn }}" onMouseOut="{{ rowOff }}">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(77% 0.152 181.912);">MAR 18, 2026</span>
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(50% 0.02 252);"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(62% 0.015 252);">9 min read</span>
+          </div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2;">Backpressure is a feature, not a failure</h2>
+          <p style="font-size: 16px; line-height: 1.65; color: oklch(74% 0.015 252); margin-top: 12px; font-weight: 300; max-width: 64ch;">Most ingestion outages I've debugged weren't caused by too much traffic — they were caused by a system that refused to say "slow down." Here's how I learned to design consumers that push back gracefully instead of falling over…</p>
+        </a>
+
+        <a href="Article.dc.html" data-reveal style="display: block; padding: 32px 0; border-top: 1px solid oklch(100% 0 0 / 0.08); transition: padding-left .25s ease;" onMouseOver="{{ rowOn }}" onMouseOut="{{ rowOff }}">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(70% 0.18 277);">JAN 27, 2026</span>
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(50% 0.02 252);"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(62% 0.015 252);">6 min read</span>
+          </div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2;">A CLI is a product, so treat it like one</h2>
+          <p style="font-size: 16px; line-height: 1.65; color: oklch(74% 0.015 252); margin-top: 12px; font-weight: 300; max-width: 64ch;">Engineers will forgive a slow web dashboard but never a CLI that lies about its progress bar. The tools we hand other developers deserve the same craft as any customer-facing surface — onboarding included…</p>
+        </a>
+
+        <a href="Article.dc.html" data-reveal style="display: block; padding: 32px 0; border-top: 1px solid oklch(100% 0 0 / 0.08); transition: padding-left .25s ease;" onMouseOver="{{ rowOn }}" onMouseOut="{{ rowOff }}">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(65% 0.241 354.308);">DEC 09, 2025</span>
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(50% 0.02 252);"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(62% 0.015 252);">11 min read</span>
+          </div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2;">Migrating billing without a maintenance window</h2>
+          <p style="font-size: 16px; line-height: 1.65; color: oklch(74% 0.015 252); margin-top: 12px; font-weight: 300; max-width: 64ch;">Money bugs are the ones that get you fired, and billing migrations touch every account you have. This is the dual-write reconciliation pattern I've used twice now to move ledgers with nobody noticing…</p>
+        </a>
+
+        <a href="Article.dc.html" data-reveal style="display: block; padding: 32px 0; border-top: 1px solid oklch(100% 0 0 / 0.08); border-bottom: 1px solid oklch(100% 0 0 / 0.08); transition: padding-left .25s ease;" onMouseOver="{{ rowOn }}" onMouseOut="{{ rowOff }}">
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(77% 0.152 181.912);">OCT 02, 2025</span>
+            <span style="width: 4px; height: 4px; border-radius: 50%; background: oklch(50% 0.02 252);"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(62% 0.015 252);">7 min read</span>
+          </div>
+          <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 26px; letter-spacing: -0.015em; line-height: 1.2;">The query planner is where the magic hides</h2>
+          <p style="font-size: 16px; line-height: 1.65; color: oklch(74% 0.015 252); margin-top: 12px; font-weight: 300; max-width: 64ch;">Federating three storage engines behind one SQL surface sounds impossible until you realize the planner is doing 90% of the work. A tour of predicate pushdown, cost estimation, and the caching layer that made it fast…</p>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid oklch(100% 0 0 / 0.07);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(55% 0.015 252);">© 2026 Maya Chen — built for the joy of it</span>
+      <div style="display: flex; gap: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;">
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">GitHub</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">LinkedIn</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">X</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reveal = () => {
+      const els = [...document.querySelectorAll('[data-reveal]')];
+      const showInView = () => {
+        const h = window.innerHeight || document.documentElement.clientHeight;
+        els.forEach(el => {
+          if (el.hasAttribute('data-shown')) return;
+          const r = el.getBoundingClientRect();
+          if (r.top < h * 0.92 && r.bottom > 0) el.setAttribute('data-shown', '');
+        });
+      };
+      showInView();
+      const onScroll = () => showInView();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      setTimeout(() => els.forEach(el => el.setAttribute('data-shown', '')), 1400);
+    };
+    requestAnimationFrame(() => requestAnimationFrame(reveal));
+  }
+  renderVals() {
+    const hoverOn = (e) => { e.currentTarget.style.color = 'oklch(98% 0.003 247.858)'; };
+    const hoverOff = (e) => { e.currentTarget.style.color = 'oklch(70% 0.015 252)'; };
+    const footOff = (e) => { e.currentTarget.style.color = 'oklch(70% 0.015 252)'; };
+    const pillOn = (e) => { e.currentTarget.style.background = 'oklch(100% 0 0 / 0.06)'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.28)'; };
+    const pillOff = (e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.16)'; };
+    const rowOn = (e) => { e.currentTarget.style.paddingLeft = '14px'; };
+    const rowOff = (e) => { e.currentTarget.style.paddingLeft = '0'; };
+    return { hoverOn, hoverOff, footOff, pillOn, pillOff, rowOn, rowOff };
+  }
+}
+</script>
+</body>
+</html>

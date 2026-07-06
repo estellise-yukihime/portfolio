@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: oklch(21.15% 0.012 254.09); color: oklch(98% 0.003 247.858); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: oklch(58% 0.233 277.117 / 0.35); }
+  @keyframes revUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  [data-reveal] { opacity: 0; }
+  [data-reveal][data-shown] { animation: revUp .7s cubic-bezier(.2,.7,.2,1) both; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+
+  <!-- NAV -->
+  <header style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: oklch(21.15% 0.012 254.09 / 0.72); border-bottom: 1px solid oklch(100% 0 0 / 0.07);">
+    <nav style="max-width: 1120px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="Home.dc.html" style="display: flex; align-items: center; gap: 12px;">
+        <span style="width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: oklch(58% 0.233 277.117); font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px; color: oklch(96% 0.018 272.314);">MC</span>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: -0.01em;">Maya Chen</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="Home.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Home</a>
+        <a href="Profile.dc.html" style="font-size: 14px; color: oklch(98% 0.003 247.858);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Profile</a>
+        <a href="Projects.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Work</a>
+        <a href="Articles.dc.html" style="font-size: 14px; color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ hoverOff }}">Articles</a>
+        <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; padding: 8px 14px; border: 1px solid oklch(100% 0 0 / 0.16); border-radius: 999px; color: oklch(98% 0.003 247.858);" onMouseOver="{{ pillOn }}" onMouseOut="{{ pillOff }}">Résumé ↓</a>
+      </div>
+    </nav>
+  </header>
+
+  <main style="flex: 1;">
+
+    <!-- HEADER -->
+    <section style="max-width: 1120px; margin: 0 auto; padding: 80px 32px 64px;">
+      <div data-reveal style="display: grid; grid-template-columns: 200px 1fr; gap: 44px; align-items: start;">
+        <div style="width: 200px; height: 240px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.1); background: repeating-linear-gradient(45deg, oklch(25.33% 0.016 252.42) 0 11px, oklch(23.26% 0.014 253.1) 11px 22px); display: grid; place-items: center;">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(62% 0.015 252); letter-spacing: 0.05em;">portrait</span>
+        </div>
+        <div>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.04em; color: oklch(77% 0.152 181.912);">PROFILE</span>
+          <h1 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.02em; margin-top: 10px; line-height: 1.05;">Maya Chen</h1>
+          <p style="font-size: 17px; color: oklch(78% 0.012 252); margin-top: 12px;">Staff Software Engineer · Distributed systems &amp; developer platforms · San Francisco</p>
+          <p style="max-width: 60ch; font-size: 16px; line-height: 1.65; color: oklch(72% 0.015 252); margin-top: 20px; font-weight: 300;">I design and operate the backends that keep data flowing — ingestion pipelines, query engines, and the tooling teams rely on daily. Eight years across three companies, one throughline: make complex systems feel simple to the people who use them.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px;">
+            <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px; border: 1px solid oklch(100% 0 0 / 0.14);" onMouseOver="{{ chipOn }}" onMouseOut="{{ chipOff }}">GitHub ↗</a>
+            <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px; border: 1px solid oklch(100% 0 0 / 0.14);" onMouseOver="{{ chipOn }}" onMouseOut="{{ chipOff }}">LinkedIn ↗</a>
+            <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px; border: 1px solid oklch(100% 0 0 / 0.14);" onMouseOver="{{ chipOn }}" onMouseOut="{{ chipOff }}">X ↗</a>
+            <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px; border: 1px solid oklch(100% 0 0 / 0.14);" onMouseOver="{{ chipOn }}" onMouseOut="{{ chipOff }}"><span class="__cf_email__" data-cfemail="137b7a537e726a72707b767d3d777665">[email&#160;protected]</span> ↗</a>
+            <a href="#" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; padding: 9px 16px; border-radius: 8px; background: oklch(58% 0.233 277.117); color: oklch(96% 0.018 272.314);" onMouseOver="{{ dlOn }}" onMouseOut="{{ dlOff }}">Download résumé ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER SUMMARY -->
+    <section style="max-width: 1120px; margin: 0 auto; padding: 24px 32px 40px;">
+      <div data-reveal style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 26px; border-top: 1px solid oklch(100% 0 0 / 0.08); padding-top: 40px;">
+        <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: oklch(70% 0.015 252);">/ CAREER</h2>
+        <a href="Projects.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: oklch(70% 0.18 277);" onMouseOver="{{ linkOn }}" onMouseOut="{{ linkOff }}">View all projects →</a>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+
+        <div data-reveal style="padding: 28px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1); transition: border-color .25s ease;" onMouseOver="{{ softOn }}" onMouseOut="{{ softOff }}">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between;">
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.01em;">Meridian Data</h3>
+              <p style="font-size: 14.5px; color: oklch(72% 0.015 252); margin-top: 3px;">Staff Software Engineer</p>
+            </div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(77% 0.152 181.912);">2022 — Present</span>
+          </div>
+          <ul style="list-style: none; margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 24px;">
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Realtime ingestion pipeline (4M events/s)</li>
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Cross-store query federation layer</li>
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Per-team cost attribution service</li>
+          </ul>
+        </div>
+
+        <div data-reveal style="padding: 28px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1); transition: border-color .25s ease;" onMouseOver="{{ softOn }}" onMouseOut="{{ softOff }}">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between;">
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.01em;">Helia Labs</h3>
+              <p style="font-size: 14.5px; color: oklch(72% 0.015 252); margin-top: 3px;">Senior Software Engineer</p>
+            </div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(70% 0.18 277);">2019 — 2022</span>
+          </div>
+          <ul style="list-style: none; margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 24px;">
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Developer CLI &amp; polyglot SDK</li>
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Feature-flag &amp; experimentation platform</li>
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Edge caching &amp; invalidation</li>
+          </ul>
+        </div>
+
+        <div data-reveal style="padding: 28px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1); transition: border-color .25s ease;" onMouseOver="{{ softOn }}" onMouseOut="{{ softOff }}">
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; justify-content: space-between;">
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 21px; letter-spacing: -0.01em;">Northwind Systems</h3>
+              <p style="font-size: 14.5px; color: oklch(72% 0.015 252); margin-top: 3px;">Software Engineer</p>
+            </div>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(65% 0.241 354.308);">2017 — 2019</span>
+          </div>
+          <ul style="list-style: none; margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px 24px;">
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Zero-downtime billing migration</li>
+            <li style="font-size: 14.5px; color: oklch(80% 0.012 252); display: flex; gap: 10px;"><span style="color: oklch(58% 0.02 252);">—</span> Multi-channel notification service</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS / CERTS / EDUCATION -->
+    <section style="max-width: 1120px; margin: 0 auto; padding: 24px 32px 80px;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px;">
+
+        <!-- SKILLS -->
+        <div data-reveal style="padding: 30px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1);">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 22px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(77% 0.152 181.912);"></span>
+            <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: oklch(78% 0.012 252);">/ SKILLS</h2>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <p style="font-size: 12px; font-family: 'IBM Plex Mono', monospace; color: oklch(62% 0.015 252); margin-bottom: 10px;">LANGUAGES</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Go</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Rust</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">TypeScript</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Python</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">SQL</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size: 12px; font-family: 'IBM Plex Mono', monospace; color: oklch(62% 0.015 252); margin-bottom: 10px;">SYSTEMS &amp; INFRA</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Kafka</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Postgres</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Kubernetes</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">gRPC</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Redis</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Terraform</span>
+              </div>
+            </div>
+            <div>
+              <p style="font-size: 12px; font-family: 'IBM Plex Mono', monospace; color: oklch(62% 0.015 252); margin-bottom: 10px;">PRACTICES</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Observability</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Distributed tracing</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">CI/CD</span>
+                <span style="font-size: 13px; padding: 6px 12px; border-radius: 7px; background: oklch(25.33% 0.016 252.42); border: 1px solid oklch(100% 0 0 / 0.08);">Incident response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTS + EDUCATION -->
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div data-reveal style="padding: 30px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(58% 0.233 277.117);"></span>
+              <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: oklch(78% 0.012 252);">/ CERTIFICATIONS</h2>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;">
+                <span style="font-size: 14.5px;">Certified Kubernetes Administrator</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(62% 0.015 252);">2023</span>
+              </div>
+              <div style="height: 1px; background: oklch(100% 0 0 / 0.06);"></div>
+              <div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline;">
+                <span style="font-size: 14.5px;">AWS Solutions Architect — Pro</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(62% 0.015 252);">2021</span>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal style="padding: 30px; border-radius: 16px; border: 1px solid oklch(100% 0 0 / 0.08); background: oklch(23.26% 0.014 253.1);">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(65% 0.241 354.308);"></span>
+              <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: oklch(78% 0.012 252);">/ EDUCATION</h2>
+            </div>
+            <div>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 17px;">B.S. Computer Science</h3>
+              <p style="font-size: 14px; color: oklch(72% 0.015 252); margin-top: 4px;">University of California, Berkeley</p>
+              <p style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(62% 0.015 252); margin-top: 8px;">2013 — 2017 · Distributed systems focus</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid oklch(100% 0 0 / 0.07);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 40px 32px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: oklch(55% 0.015 252);">© 2026 Maya Chen — built for the joy of it</span>
+      <div style="display: flex; gap: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;">
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">GitHub</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">LinkedIn</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">X</a>
+        <a href="#" style="color: oklch(70% 0.015 252);" onMouseOver="{{ hoverOn }}" onMouseOut="{{ footOff }}">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reveal = () => {
+      const els = [...document.querySelectorAll('[data-reveal]')];
+      const showInView = () => {
+        const h = window.innerHeight || document.documentElement.clientHeight;
+        els.forEach(el => {
+          if (el.hasAttribute('data-shown')) return;
+          const r = el.getBoundingClientRect();
+          if (r.top < h * 0.92 && r.bottom > 0) el.setAttribute('data-shown', '');
+        });
+      };
+      showInView();
+      const onScroll = () => showInView();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      setTimeout(() => els.forEach(el => el.setAttribute('data-shown', '')), 1400);
+    };
+    requestAnimationFrame(() => requestAnimationFrame(reveal));
+  }
+  renderVals() {
+    const hoverOn = (e) => { e.currentTarget.style.color = 'oklch(98% 0.003 247.858)'; };
+    const hoverOff = (e) => { e.currentTarget.style.color = 'oklch(70% 0.015 252)'; };
+    const footOff = (e) => { e.currentTarget.style.color = 'oklch(70% 0.015 252)'; };
+    const pillOn = (e) => { e.currentTarget.style.background = 'oklch(100% 0 0 / 0.06)'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.28)'; };
+    const pillOff = (e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.16)'; };
+    const chipOn = (e) => { e.currentTarget.style.background = 'oklch(100% 0 0 / 0.05)'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.28)'; };
+    const chipOff = (e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.14)'; };
+    const dlOn = (e) => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 10px 24px oklch(58% 0.233 277.117 / 0.35)'; };
+    const dlOff = (e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; };
+    const linkOn = (e) => { e.currentTarget.style.color = 'oklch(85% 0.12 277)'; };
+    const linkOff = (e) => { e.currentTarget.style.color = 'oklch(70% 0.18 277)'; };
+    const softOn = (e) => { e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.18)'; };
+    const softOff = (e) => { e.currentTarget.style.borderColor = 'oklch(100% 0 0 / 0.08)'; };
+    return { hoverOn, hoverOff, footOff, pillOn, pillOff, chipOn, chipOff, dlOn, dlOff, linkOn, linkOff, softOn, softOff };
+  }
+}
+</script>
+</body>
+</html>
