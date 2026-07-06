@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router'
-import { App } from './app'
 import { Index } from './page/index'
-import { Profile } from './page/profile/profile'
 import { Articles } from './page/articles/articles'
 import { ArticlesItem } from './page/articles-item/articles-item'
+import { Career } from './page/career/career';
+import { ProfilesItem } from './page/profiles-item/profiles-item.component';
 
 export const routes: Routes = [
   {
@@ -12,7 +12,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'profiles/:profileId',
-        component: Profile,
+        component: ProfilesItem,
         children: [
           {
             path: 'articles',
@@ -21,6 +21,10 @@ export const routes: Routes = [
           {
             path: 'articles/:articleId',
             component: ArticlesItem
+          },
+          {
+            path: 'career',
+            component: Career
           }
         ]
       }
