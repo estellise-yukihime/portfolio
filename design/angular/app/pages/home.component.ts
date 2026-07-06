@@ -21,9 +21,7 @@ import { DEFAULT_PROFILE_ID, profile } from '../data/portfolio';
               <span
                 class="w-2 h-2 rounded-full bg-accent shadow-[0_0_12px_oklch(77%_0.152_181.912_/_0.8)]"
               ></span>
-              <span class="font-mono text-[13px] tracking-[0.04em] text-muted">{{
-                status
-              }}</span>
+              <span class="font-mono text-[13px] tracking-[0.04em] text-muted">{{ status }}</span>
             </div>
             <h1
               class="font-display font-semibold leading-[1.02] tracking-[-0.03em] text-[clamp(40px,7vw,84px)] max-w-[15ch] text-balance"
@@ -51,7 +49,10 @@ import { DEFAULT_PROFILE_ID, profile } from '../data/portfolio';
 
         <!-- QUICK LINKS -->
         <section class="max-w-shell mx-auto px-8 pb-20">
-          <div appReveal class="flex items-baseline justify-between mb-7">
+          <div
+            appReveal
+            class="flex items-baseline justify-between mb-7"
+          >
             <h2 class="font-mono text-[13px] tracking-[0.08em] text-muted">/ EXPLORE</h2>
             <span class="font-mono text-[13px] text-faint">03 sections</span>
           </div>
@@ -82,34 +83,37 @@ import { DEFAULT_PROFILE_ID, profile } from '../data/portfolio';
 
       <app-footer></app-footer>
     </div>
-  `,
+  `
 })
 export class HomeComponent {
-  readonly profileId = DEFAULT_PROFILE_ID;
-  readonly status = profile.status;
-  readonly bio = profile.bio;
+  readonly profileId = DEFAULT_PROFILE_ID
+  readonly status = profile.status
+  readonly bio = profile.bio
 
   readonly links = [
     {
       num: '01',
       title: 'Profile',
+      label: '',
       desc: 'Career summary, skills, certifications, education, and social links.',
       route: ['/profiles', this.profileId],
-      badgeClass: 'bg-secondary/[0.14] text-secondary',
+      badgeClass: 'bg-secondary/[0.14] text-secondary'
     },
     {
       num: '02',
       title: 'Work & Projects',
+      label: '',
       desc: 'Full career timeline with project detail, imagery, and tech stacks.',
       route: ['/profiles', this.profileId, 'projects'],
-      badgeClass: 'bg-primary/[0.16] text-primary',
+      badgeClass: 'bg-primary/[0.16] text-primary'
     },
     {
       num: '03',
       title: 'Articles',
+      label: '',
       desc: 'Writing on distributed systems, developer experience, and craft.',
       route: ['/profiles', this.profileId, 'articles'],
-      badgeClass: 'bg-accent/[0.14] text-accent',
-    },
-  ];
+      badgeClass: 'bg-accent/[0.14] text-accent'
+    }
+  ]
 }
