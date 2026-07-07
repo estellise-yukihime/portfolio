@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { provideRouter } from '@angular/router'
 
-import { ProfilesItem } from './profiles-item.component'
+import { ProfilesItem } from './profiles-item'
 
 describe('Profile', () => {
   let component: ProfilesItem
@@ -8,7 +9,8 @@ describe('Profile', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfilesItem]
+      imports: [ProfilesItem],
+      providers: [provideRouter([])]
     }).compileComponents()
 
     fixture = TestBed.createComponent(ProfilesItem)

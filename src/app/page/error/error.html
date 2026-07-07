@@ -1,1 +1,68 @@
-<p>error works!</p>
+<div class="min-h-screen flex flex-col">
+  <app-nav [profileId]="profileId"></app-nav>
+
+  <main class="flex-1 grid place-items-center px-8 py-20">
+    <div appReveal class="w-full max-w-read text-center">
+      <span class="font-mono text-[13px] tracking-[0.08em] text-secondary">ERROR · HTTP 404</span>
+
+      <!-- Big 404 -->
+      <div
+        class="flex items-center justify-center gap-[clamp(8px,3vw,28px)] mt-6 mb-2 font-display font-bold text-[clamp(96px,22vw,220px)] leading-[0.9] tracking-[-0.04em]">
+        <span class="text-accent animate-[drift_5s_ease-in-out_infinite]">4</span>
+        <span class="text-primary animate-[drift_6s_ease-in-out_infinite] [animation-delay:.4s]">0</span>
+        <span class="text-secondary animate-[drift_5.5s_ease-in-out_infinite] [animation-delay:.8s]">4</span>
+      </div>
+
+      <h1 class="font-display font-semibold text-[clamp(24px,4vw,34px)] tracking-[-0.02em] mt-5">
+        This page went off the grid
+      </h1>
+      <p class="max-w-[46ch] mx-auto mt-4 text-[17px] leading-relaxed text-muted font-light">
+        The URL you followed doesn’t resolve to anything here — it may have moved, been
+        renamed, or never existed. Let’s get you back on a known route.
+      </p>
+
+      <!-- terminal-ish line -->
+      <div
+        class="max-w-[460px] mx-auto mt-[30px] text-left px-[18px] py-3.5 rounded-[10px] border border-white/10 bg-base-200 font-mono text-[13.5px] text-content/[0.78]">
+        <span class="text-accent">$</span> cd /requested/path
+        <span class="text-secondary animate-[blink_1.1s_step-end_infinite]">▌</span><br />
+        <span class="text-faint">cd: no such file or directory</span>
+      </div>
+
+      <div class="mt-[34px] flex flex-wrap gap-3.5 justify-center">
+        <a
+          routerLink="/"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] bg-primary text-primary-content font-medium text-[15px] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_30px_oklch(58%_0.233_277.117_/_0.35)]">
+          <span class="font-mono">←</span>
+          Back home
+        </a>
+        <a
+          [routerLink]="['/profiles', profileId, 'articles']"
+          class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] border border-white/[0.16] font-medium text-[15px] transition-colors hover:bg-white/[0.05] hover:border-white/[0.3]">
+          Read articles
+        </a>
+      </div>
+
+      <!-- quick links -->
+      <div
+        class="mt-10 pt-[26px] border-t border-white/[0.08] flex flex-wrap gap-x-[26px] gap-y-2 justify-center">
+        <span class="font-mono text-[12.5px] text-faint">TRY:</span>
+        <a
+          [routerLink]="['/profiles', profileId]"
+          class="font-mono text-[12.5px] text-muted hover:text-content transition-colors">
+          /profile</a>
+        <a
+          [routerLink]="['/profiles', profileId, 'career']"
+          class="font-mono text-[12.5px] text-muted hover:text-content transition-colors">
+          /career
+        </a>
+        <a
+          [routerLink]="['/profiles', profileId, 'articles']"
+          class="font-mono text-[12.5px] text-muted hover:text-content transition-colors">
+          /articles</a>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>

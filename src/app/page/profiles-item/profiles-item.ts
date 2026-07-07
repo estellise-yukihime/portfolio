@@ -6,12 +6,12 @@ import { Reveal } from '../../shared/reveal'
 import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../../data/portfolio'
 
 @Component({
-  selector: 'app-articles',
+  selector: 'app-profile',
   imports: [RouterLink, Nav, Footer, Reveal],
-  templateUrl: './articles.html',
-  styleUrl: './articles.css'
+  templateUrl: './profiles-item.html',
+  styleUrl: './profiles-item.css'
 })
-export class Articles {
+export class ProfilesItem {
   private route = inject(ActivatedRoute)
   readonly profileId = this.route.snapshot.paramMap.get('profileId') ?? DEFAULT_PROFILE_ID
   readonly p = getProfile(this.profileId)

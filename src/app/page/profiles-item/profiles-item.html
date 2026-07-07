@@ -1,1 +1,156 @@
-<p>profile works!</p>
+<div class="min-h-screen flex flex-col">
+  <app-nav [profileId]="profileId"></app-nav>
+
+  <main class="flex-1">
+    <!-- HEADER -->
+    <section class="max-w-shell mx-auto px-8 pt-20 pb-16">
+      <div appReveal class="grid grid-cols-[200px_1fr] gap-11 items-start max-md:grid-cols-1">
+        <div
+          class="w-[200px] h-60 rounded-2xl border border-white/10 grid place-items-center max-md:w-full"
+          style="background: repeating-linear-gradient(45deg, oklch(25.33% 0.016 252.42) 0 11px, oklch(23.26% 0.014 253.1) 11px 22px)">
+          <span class="font-mono text-[11px] text-faint tracking-[0.05em]">portrait</span>
+        </div>
+        <div>
+          <span class="font-mono text-[13px] tracking-[0.04em] text-accent">PROFILE</span>
+          <h1
+            class="font-display font-semibold text-[clamp(34px,5vw,52px)] tracking-[-0.02em] mt-2.5 leading-[1.05]">
+            {{ p.name }}
+          </h1>
+          <p class="text-[17px] text-content/[0.78] mt-3">
+            {{ p.role }} · {{ p.tagline }} · {{ p.location }}
+          </p>
+          <p class="max-w-[60ch] text-base leading-relaxed text-muted mt-5 font-light">
+            I design and operate the backends that keep data flowing — ingestion pipelines,
+            query engines, and the tooling teams rely on daily. Eight years across three
+            companies, one throughline: make complex systems feel simple to the people who use
+            them.
+          </p>
+          <div class="flex flex-wrap gap-2.5 mt-6">
+            @for (s of p.socials; track s.label) {
+              <a
+                [href]="s.href"
+                class="font-mono text-[13px] px-4 py-2.5 rounded-lg border border-white/[0.14] hover:bg-white/[0.05] hover:border-white/[0.28] transition-colors">
+                {{ s.label }} ↗
+              </a>
+            }
+            <a
+              [href]="p.resumeUrl"
+              class="font-mono text-[13px] px-4 py-2.5 rounded-lg bg-primary text-primary-content transition-transform hover:-translate-y-px hover:shadow-[0_10px_24px_oklch(58%_0.233_277.117_/_0.35)]">
+              Download résumé ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER SUMMARY -->
+    <section class="max-w-shell mx-auto px-8 pt-6 pb-10">
+      <div
+        appReveal
+        class="flex items-baseline justify-between mb-[26px] border-t border-white/[0.08] pt-10">
+        <h2 class="font-mono text-[13px] tracking-[0.08em] text-muted">/ CAREER</h2>
+        <a
+          [routerLink]="['/profiles', profileId, 'career']"
+          class="font-mono text-[13px] text-primary hover:brightness-125 transition">
+          View all projects →
+        </a>
+      </div>
+
+      <div class="flex flex-col gap-3.5">
+        @for (c of p.companies; track c.name) {
+          <div
+            appReveal
+            class="p-7 rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.18]">
+            <div class="flex flex-wrap gap-3 items-baseline justify-between">
+              <div>
+                <h3 class="font-display font-semibold text-[21px] tracking-tight">
+                  {{ c.name }}
+                </h3>
+                <p class="text-[14.5px] text-muted mt-0.5">{{ c.role }}</p>
+              </div>
+              <span class="font-mono text-[12.5px]" [class]="accentText(c.accent)">
+                {{ c.start }} — {{ c.end }}
+              </span>
+            </div>
+            <ul
+              class="list-none mt-[18px] grid gap-x-6 gap-y-2.5 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]">
+              @for (proj of c.summaryProjects; track proj) {
+                <li class="text-[14.5px] text-content/80 flex gap-2.5">
+                  <span class="text-faint">—</span> {{ proj }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- SKILLS / CERTS / EDUCATION -->
+    <section class="max-w-shell mx-auto px-8 pt-6 pb-20">
+      <div class="grid grid-cols-[1.4fr_1fr] gap-[18px] max-md:grid-cols-1">
+        <!-- SKILLS -->
+        <div appReveal class="p-[30px] rounded-2xl border border-white/[0.08] bg-base-200">
+          <div class="flex items-center gap-2.5 mb-[22px]">
+            <span class="w-[7px] h-[7px] rounded-full bg-accent"></span>
+            <h2 class="font-mono text-[13px] tracking-[0.08em] text-content/[0.78]">/ SKILLS</h2>
+          </div>
+          <div class="flex flex-col gap-5">
+            @for (g of p.skills; track g.label) {
+              <div>
+                <p class="text-xs font-mono text-faint mb-2.5">{{ g.label }}</p>
+                <div class="flex flex-wrap gap-2">
+                  @for (item of g.items; track item) {
+                    <span
+                      class="text-[13px] px-3 py-1.5 rounded-md bg-base-300 border border-white/[0.08]">
+                      {{ item }}
+                    </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- CERTS + EDUCATION -->
+        <div class="flex flex-col gap-[18px]">
+          <div appReveal class="p-[30px] rounded-2xl border border-white/[0.08] bg-base-200">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="w-[7px] h-[7px] rounded-full bg-primary"></span>
+              <h2 class="font-mono text-[13px] tracking-[0.08em] text-content/[0.78]">
+                / CERTIFICATIONS
+              </h2>
+            </div>
+            <div class="flex flex-col gap-3.5">
+              @for (cert of p.certifications; track cert.name; let last = $last) {
+                <div class="flex justify-between gap-3 items-baseline">
+                  <span class="text-[14.5px]">{{ cert.name }}</span>
+                  <span class="font-mono text-xs text-faint">{{ cert.year }}</span>
+                </div>
+                @if (!last) {
+                  <div class="h-px bg-white/[0.06]"></div>
+                }
+              }
+            </div>
+          </div>
+
+          <div appReveal class="p-[30px] rounded-2xl border border-white/[0.08] bg-base-200">
+            <div class="flex items-center gap-2.5 mb-5">
+              <span class="w-[7px] h-[7px] rounded-full bg-secondary"></span>
+              <h2 class="font-mono text-[13px] tracking-[0.08em] text-content/[0.78]">
+                / EDUCATION
+              </h2>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-[17px]">{{ p.education.degree }}</h3>
+              <p class="text-sm text-muted mt-1">{{ p.education.school }}</p>
+              <p class="font-mono text-xs text-faint mt-2">
+                {{ p.education.years }} · {{ p.education.detail }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</div>
