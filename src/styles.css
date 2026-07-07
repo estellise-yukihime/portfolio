@@ -1,3 +1,133 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+ * Theme — daisyUI "dark" palette (oklch), ported from the original design's
+ * tailwind.config.js to Tailwind v4's CSS-first `@theme`. Opacity utilities
+ * (bg-primary/15, text-content/80, …) work out of the box in v4.
+ * ------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces: base-100 (page) → base-200 (cards) → base-300 (chips) */
+  --color-base-100: oklch(21.15% 0.012 254.09);
+  --color-base-200: oklch(23.26% 0.014 253.1);
+  --color-base-300: oklch(25.33% 0.016 252.42);
+  --color-base-content: oklch(98% 0.003 247.858);
+
+  /* Text */
+  --color-content: oklch(98% 0.003 247.858);
+  --color-muted: oklch(70% 0.015 252);
+  --color-faint: oklch(62% 0.015 252);
+
+  /* Accents */
+  --color-primary: oklch(58% 0.233 277.117);
+  --color-primary-content: oklch(96% 0.018 272.314);
+  --color-secondary: oklch(65% 0.241 354.308);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(77% 0.152 181.912);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+
+  /* Fonts */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Content widths — power max-w-shell / max-w-read / max-w-list */
+  --container-shell: 1120px;
+  --container-read: 720px;
+  --container-list: 820px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-base-100 text-content font-sans antialiased;
+  }
+  ::selection {
+    background: oklch(58% 0.233 277.117 / 0.35);
+  }
+}
+
+/* Scroll-reveal: hidden until the appReveal directive adds [data-shown]. */
+[data-reveal] {
+  opacity: 0;
+}
+[data-reveal][data-shown] {
+  animation: revUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes revUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 404 page motion (referenced via animate-[drift…] / animate-[blink…]). */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(2px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 1px);
+  }
+  75% {
+    transform: translate(1px, 2px);
+  }
+}
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Long-form article body styling. */
+@layer components {
+  .prose p {
+    @apply text-[17px] leading-[1.75] text-content/85 font-light mb-6;
+  }
+  .prose h2 {
+    @apply font-display font-semibold text-2xl tracking-tight mt-11 mb-4;
+  }
+  .prose blockquote {
+    @apply border-l-2 border-accent pl-[22px] my-7 text-[19px] leading-relaxed text-content/90 italic;
+  }
+  .prose code {
+    @apply font-mono text-[14.5px] bg-base-300 px-[7px] py-0.5 rounded text-accent;
+  }
+  .prose ul {
+    @apply mb-6 list-none pl-1;
+  }
+  .prose li {
+    @apply text-[17px] leading-[1.7] text-content/85 font-light mb-2.5 flex gap-3;
+  }
+  .prose li::before {
+    content: '—';
+    @apply text-accent;
+  }
+}
