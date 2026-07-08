@@ -18,26 +18,26 @@
         Home
       </a>
       <a
-        [routerLink]="['/profiles', profileId]"
+        [routerLink]="['/profiles', profileId.id]"
         routerLinkActive="text-content"
         [routerLinkActiveOptions]="{ exact: true }"
         class="text-sm text-muted hover:text-content transition-colors">
         Profile
       </a>
       <a
-        [routerLink]="['/profiles', profileId, 'career']"
+        [routerLink]="['/profiles', profileId.id, 'career']"
         routerLinkActive="text-content"
         class="text-sm text-muted hover:text-content transition-colors">
         Work
       </a>
       <a
-        [routerLink]="['/profiles', profileId, 'articles']"
+        [routerLink]="['/profiles', profileId.id, 'articles']"
         routerLinkActive="text-content"
         class="text-sm text-muted hover:text-content transition-colors">
         Articles
       </a>
       <a
-        [href]="resumeUrl"
+        [routerLink]="['/404']"
         class="font-mono text-[12.5px] px-3.5 py-2 border border-white/[0.16] rounded-full text-content hover:bg-white/[0.06] hover:border-white/[0.28] transition-colors max-sm:hidden">
         Résumé ↓
       </a>

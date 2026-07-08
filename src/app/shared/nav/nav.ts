@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core'
-import { RouterLink, RouterLinkActive } from '@angular/router'
-import { profile } from '../../data/portfolio'
+import { Component, inject } from '@angular/core'
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router'
 
 /**
  * Sticky top navigation. Pass the current profileId so the section links resolve
@@ -12,8 +11,19 @@ import { profile } from '../../data/portfolio'
   templateUrl: './nav.html'
 })
 export class Nav {
-  @Input({ required: true }) profileId!: string
-  readonly initials = profile.initials
-  readonly name = profile.name
-  readonly resumeUrl = profile.resumeUrl
+  private readonly _route = inject(ActivatedRoute)
+
+  readonly profileId = this._route.snapshot.data['profileId']
+  readonly profileInfo = this._route.snapshot.data['profileInfo']
+
+  get initials(): string {
+    const initialF = this.profileInfo.first_name?.slice(0, 1)
+    const initialL = this.profileInfo.last_name?.slice(0, 1)
+
+    return `${initialF}${initialL}`.toUpperCase()
+  }
+
+  get name(): string {
+    return `${this.profileInfo.first_name} ${this.profileInfo.last_name}`
+  }
 }
