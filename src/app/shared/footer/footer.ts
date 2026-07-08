@@ -1,11 +1,13 @@
-import { Component } from '@angular/core'
-import { profile } from '../../data/portfolio'
+import { Component, inject } from '@angular/core'
+import { ProfileLink } from '../../models/profile-link'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.html'
 })
 export class Footer {
-  readonly name = profile.name
-  readonly socials = profile.socials
+  private readonly _route = inject(ActivatedRoute)
+
+  readonly profileLink = this._route.snapshot.data['profileLink'] as ProfileLink[]
 }

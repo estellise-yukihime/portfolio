@@ -4,9 +4,9 @@
           © 2026 Portfolio — A site built for skills & coffee
         </span>
     <div class="flex gap-[22px] font-mono text-[12.5px]">
-      @for (s of socials; track s.label) {
-        <a [href]="s.href" class="text-muted hover:text-content transition-colors">
-          {{ s.label }}
+      @for (p of profileLink; track p.name) {
+        <a [href]="p.link" class="text-muted hover:text-content transition-colors">
+          {{ p.name }}
         </a>
       }
     </div>
