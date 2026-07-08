@@ -1,16 +1,14 @@
 import { Component } from '@angular/core'
 import { RouterLink } from '@angular/router'
-import { Nav }        from '../../shared/nav/nav'
-import { Footer }     from '../../shared/footer/footer'
 import { Reveal } from '../../shared/reveal'
-import { DEFAULT_PROFILE_ID } from '../../data/portfolio'
+import { FooterEmpty } from '../../shared/footer-empty/footer-empty'
 
 @Component({
   selector: 'app-error',
-  imports: [RouterLink, Nav, Footer, Reveal],
+  imports: [RouterLink, Reveal, FooterEmpty],
   templateUrl: './error.html',
   styleUrl: './error.css'
 })
 export class Error {
-  readonly profileId = DEFAULT_PROFILE_ID
+  readonly profileId = '33a88871-2a53-47db-98a3-c479c196f4f5'
 }

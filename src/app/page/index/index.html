@@ -1,5 +1,5 @@
 <div class="min-h-screen flex flex-col">
-  <app-nav [profileId]="profileId"></app-nav>
+  <app-nav></app-nav>
 
   <main class="flex-1">
     <!-- HERO -->
@@ -11,21 +11,21 @@
           <span class="font-mono text-[13px] tracking-[0.04em] text-muted">{{ status }}</span>
         </div>
         <h1
-          class="font-display font-semibold leading-[1.02] tracking-[-0.03em] text-[clamp(40px,7vw,84px)] max-w-[15ch] text-balance">
-          I build <span class="text-accent">reliable systems</span> and
-          <span class="text-secondary">thoughtful interfaces</span>.
+          class="font-display font-semibold leading-[1.02] tracking-[-0.03em] text-[clamp(40px,7vw,84px)] max-w-[15ch] text-balance"
+          [innerHTML]="headHtml">
         </h1>
-        <p class="mt-8 max-w-[56ch] text-[19px] leading-relaxed text-content/[0.78] font-light">
-          {{ bio }}
+        <p
+          class="mt-8 max-w-[56ch] text-[19px] leading-relaxed text-content/[0.78] font-light"
+          [innerHTML]="textHtml">
         </p>
         <div class="mt-11 flex flex-wrap gap-3.5">
           <a
-            [routerLink]="['/profiles', profileId]"
+            [routerLink]="['/profiles', profileId().id]"
             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] bg-primary text-primary-content font-medium text-[15px] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_30px_oklch(58%_0.233_277.117_/_0.35)]">
             View profile <span class="font-mono">→</span>
           </a>
           <a
-            [routerLink]="['/profiles', profileId, 'articles']"
+            [routerLink]="['/profiles', profileId().id, 'articles']"
             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] border border-white/[0.16] font-medium text-[15px] transition-colors hover:bg-white/[0.05] hover:border-white/[0.3]">
             Read articles</a>
         </div>
@@ -39,7 +39,7 @@
         <span class="font-mono text-[13px] text-faint">04 sections</span>
       </div>
       <div class="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
-        @for (link of links; track link.title) {
+        @for (link of indexLinks; track link.title) {
           <a
             appReveal
             [routerLink]="link.route"
@@ -48,7 +48,7 @@
               <span
                 class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm"
                 [class]="link.badgeClass">
-                {{ link.num }}
+                {{ link.number }}
               </span>
               <span class="font-mono text-lg text-faint">↗</span>
             </div>
