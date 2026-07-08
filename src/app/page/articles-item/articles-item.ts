@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { ActivatedRoute, RouterLink } from '@angular/router'
-import { Nav }                        from '../../shared/nav/nav'
-import { Footer }                     from '../../shared/footer/footer'
+import { Nav } from '../../shared/nav/nav'
+import { Footer } from '../../shared/footer/footer'
 import { Reveal } from '../../shared/reveal'
 import { DEFAULT_PROFILE_ID, getArticle, profile, type Accent } from '../../data/portfolio'
 
