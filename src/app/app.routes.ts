@@ -10,14 +10,18 @@ import { profileNaviResolver } from './resolvers/profile-resolver/profile-navi-r
 import { indexHeroResolver } from './resolvers/profile-resolver/index-hero-resolver'
 import { indexFootResolver } from './resolvers/profile-resolver/index-foot-resolver'
 import { profileFootResolver } from './resolvers/profile-resolver/profile-foot-resolver'
+import { indexIdResolver } from './resolvers/profile-resolver/index-id-resolver'
+import { profileIdResolver } from './resolvers/profile-resolver/profile-id-resolver'
 
 const profileIndexResolver = {
+  profileId: indexIdResolver,
   profileInfo: indexNaviResolver,
   profileHero: indexHeroResolver,
   profileLink: indexFootResolver
 }
 
 const profileProfileResolver = {
+  profileId: profileIdResolver,
   profileInfo: profileNaviResolver,
   profileLink: profileFootResolver
 }
@@ -27,12 +31,12 @@ export const routes: Routes = [
     path: '',
     component: Index,
     title: 'Software Developer',
-    data: { profileId: '62a9ff3f-73d3-444c-a70d-20c01fac3e00' },
+    data: { profileId: '33a88871-2a53-47db-98a3-c479c196f4f5' },
     resolve: profileIndexResolver
   },
   {
     path: 'profiles',
-    redirectTo: `profiles/62a9ff3f-73d3-444c-a70d-20c01fac3e00`,
+    redirectTo: `profiles/33a88871-2a53-47db-98a3-c479c196f4f5`,
     pathMatch: 'full'
   },
   {
