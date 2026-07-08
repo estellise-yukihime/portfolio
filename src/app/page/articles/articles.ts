@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { afterNextRender, Component, inject } from '@angular/core'
 import { ActivatedRoute, RouterLink } from '@angular/router'
 import { Nav } from '../../shared/nav/nav'
 import { Footer } from '../../shared/footer/footer'
@@ -15,6 +15,12 @@ export class Articles {
   private route = inject(ActivatedRoute)
   readonly profileId = this.route.snapshot.paramMap.get('profileId') ?? DEFAULT_PROFILE_ID
   readonly p = getProfile(this.profileId)
+
+  constructor() {
+    afterNextRender(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    })
+  }
 
   accentText(a: Accent): string {
     return { accent: 'text-accent', primary: 'text-primary', secondary: 'text-secondary' }[a]
