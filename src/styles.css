@@ -2,6 +2,9 @@
 
 @import 'tailwindcss';
 
+@source inline('line-through');
+@source inline('text-white');
+
 /* ---------------------------------------------------------------------------
  * Theme — daisyUI "dark" palette (oklch), ported from the original design's
  * tailwind.config.js to Tailwind v4's CSS-first `@theme`. Opacity utilities
@@ -52,9 +55,11 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply bg-base-100 text-content font-sans antialiased;
   }
+
   ::selection {
     background: oklch(58% 0.233 277.117 / 0.35);
   }
@@ -64,6 +69,7 @@
 [data-reveal] {
   opacity: 0;
 }
+
 [data-reveal][data-shown] {
   animation: revUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
@@ -95,6 +101,7 @@
     transform: translate(1px, 2px);
   }
 }
+
 @keyframes blink {
   0%,
   49% {
@@ -111,21 +118,27 @@
   .prose p {
     @apply text-[17px] leading-[1.75] text-content/85 font-light mb-6;
   }
+
   .prose h2 {
     @apply font-display font-semibold text-2xl tracking-tight mt-11 mb-4;
   }
+
   .prose blockquote {
     @apply border-l-2 border-accent pl-[22px] my-7 text-[19px] leading-relaxed text-content/90 italic;
   }
+
   .prose code {
     @apply font-mono text-[14.5px] bg-base-300 px-[7px] py-0.5 rounded text-accent;
   }
+
   .prose ul {
     @apply mb-6 list-none pl-1;
   }
+
   .prose li {
     @apply text-[17px] leading-[1.7] text-content/85 font-light mb-2.5 flex gap-3;
   }
+
   .prose li::before {
     content: '—';
     @apply text-accent;
