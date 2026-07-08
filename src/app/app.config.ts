@@ -24,7 +24,6 @@ export const appConfig: ApplicationConfig = {
 
         return router.navigate(['/404'])
       }),
-      // Reset scroll to the top on navigation; honor #fragment anchors.
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' })
     )
   ]
