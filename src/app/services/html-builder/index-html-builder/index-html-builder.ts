@@ -28,7 +28,7 @@ export class IndexHtmlBuilder implements HtmlBuilder {
 
         // first to second last item is a css class
         // last item is a text
-        html.push(`<span class=\"${matches.slice(0, -1).join(' ')}\">${matches.pop()?.slice(1, -1)}</span>`)
+        html.push(`<span class=\"${matches.slice(0, -1).join(' ')}\">${matches.pop()?.slice(1, -1).replace(/<>/g, ' ')}</span>`)
       } else {
         html.push(token)
       }
