@@ -1,4 +1,4 @@
-import { Service } from '@angular/core'
+import { Service }     from '@angular/core'
 import { HtmlBuilder } from '../html-builder'
 
 /**
