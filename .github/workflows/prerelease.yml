@@ -9,6 +9,7 @@ jobs:
     uses: ./.github/workflows/prerelease-check-version.yml
 
   build:
+    name: build & upload
     needs: check
     runs-on: ubuntu-latest
     steps:
