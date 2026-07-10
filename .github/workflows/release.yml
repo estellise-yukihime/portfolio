@@ -7,6 +7,8 @@ on:
 jobs:
   fetch:
     runs-on: desperation
+    outputs:
+      rebuild: ${{ steps.download.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v6
       - name: login registry
@@ -16,6 +18,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: download image
+        id: download
         continue-on-error: true
         env:
           tag: ${{ github.event.release.tag_name }}
@@ -28,14 +31,15 @@ jobs:
             exit 1
           fi
 
-  retry:
+  build:
     needs: fetch
-    if: ${{ failure() }}
-    uses: ./.github/workflows/release-retry.yml
+    if: ${{ needs.fetch.outputs.rebuild }}
+    uses: ./.github/workflows/prerelease.yml
+    secrets: inherit
 
   deploy:
-    needs: fetch
-    if: ${{ success() }}
+    needs: [fetch, build]
+    if: ${{ always() && (needs.build.result == 'skipped' || needs.build.result == 'success') }}
     runs-on: desperation
     steps:
       - uses: actions/checkout@v6
