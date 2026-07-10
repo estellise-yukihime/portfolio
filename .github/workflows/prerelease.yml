@@ -19,23 +19,23 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v6
-      - name: metadata
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: gchr.io/portfolio
-          tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=sha
       - name: login registry
         uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: metadata
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
       - name: upload image
         uses: docker/build-push-action@v7
         with:
@@ -45,6 +45,6 @@ jobs:
       - name: artifact attestation
         uses: actions/attest@v4
         with:
-          subject-name: gchr.io/portfolio
+          subject-name: ghcr.io/portfolio
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
