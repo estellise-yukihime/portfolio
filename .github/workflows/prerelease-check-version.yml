@@ -1,6 +1,6 @@
 name: prerelease-check-version.yml
 
-on: [release]
+on: workflow_call
 
 jobs:
   check:
@@ -15,6 +15,6 @@ jobs:
           current=$(node -p "require('./package.json').version")
 
           if [[ "$version" != "$current" ]]; then
-            echo "::error package.json version (current) differs from tag ($version)
+            echo "::error package.json version (current) differs from tag ($version)"
             exit 1
           fi
