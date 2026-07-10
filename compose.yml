@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/estellise-yukihime/portfolio-ui
+    image: ghcr.io/estellise-yukihime/portfolio-ui:${VERSION}
     deploy:
       mode: global
       restart_policy:

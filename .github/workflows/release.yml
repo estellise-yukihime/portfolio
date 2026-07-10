@@ -24,10 +24,10 @@ jobs:
         id: download
         continue-on-error: true
         env:
-          tag: ${{ github.event.release.tag_name }}
+          TAG: ${{ github.event.release.tag_name }}
         run: |
-          version=${tag#v}
-          docker pull ghcr.io/${{ github.repository }}-ui:$version
+          VERSION=${TAG#v}
+          docker pull ghcr.io/${{ github.repository }}-ui:$VERSION
 
           if [[ $? -ne 0 ]]; then
             echo "::error failed to download image"
@@ -47,5 +47,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: compose up
-        run: docker compose up -d
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          VERSION=${TAG#v}
+          VERSION=$VERSION docker compose up -d
 
