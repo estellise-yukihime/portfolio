@@ -36,7 +36,7 @@ jobs:
 
   build:
     needs: fetch
-    if: ${{ needs.fetch.outputs.rebuild }}
+    if: ${{ needs.fetch.outputs.rebuild == 'true' }}
     uses: ./.github/workflows/prerelease.yml
     secrets: inherit
 
