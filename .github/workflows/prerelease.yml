@@ -34,5 +34,6 @@ jobs:
       - name: upload image
         uses: docker/build-push-action@v7
         with:
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
