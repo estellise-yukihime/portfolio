@@ -29,7 +29,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ github.repository }}-ui
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -46,6 +46,6 @@ jobs:
       - name: artifact attestation
         uses: actions/attest@v4
         with:
-          subject-name: ghcr.io/portfolio
+          subject-name: ghcr.io/${{ github.repository }}-ui
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
