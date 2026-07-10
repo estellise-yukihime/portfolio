@@ -3,6 +3,7 @@ name: prerelease.yml
 on:
   release:
     types: [prereleased]
+  workflow_call:
 
 jobs:
   check:
