@@ -9,6 +9,9 @@ jobs:
     runs-on: desperation
     outputs:
       rebuild: ${{ steps.download.outcome == 'failure' }}
+    permissions:
+      contents: read
+      packages: read
     steps:
       - uses: actions/checkout@v6
       - name: login registry
@@ -24,7 +27,7 @@ jobs:
           tag: ${{ github.event.release.tag_name }}
         run: |
           version=${tag#v}
-          docker pull ghcr.io/${{ github.repository }}:$version
+          docker pull ghcr.io/${{ github.repository }}-ui:$version
 
           if [[ $? -ne 0 ]]; then
             echo "::error failed to download image"
