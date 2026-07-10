@@ -12,6 +12,8 @@ jobs:
     name: build & upload
     needs: check
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v6
       - name: metadata
