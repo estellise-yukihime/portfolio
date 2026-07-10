@@ -15,13 +15,15 @@ jobs:
     permissions:
       contents: read
       packages: write
+      attestations: write
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - name: metadata
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ${{ github.repository_owner }}/portfolio-ui
+          images: gchr.io/portfolio
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -40,3 +42,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
+      - name: artifact attestation
+        uses: actions/attest@v4
+        with:
+          subject-name: gchr.io/portfolio
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
