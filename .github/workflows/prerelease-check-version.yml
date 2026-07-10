@@ -1,0 +1,20 @@
+name: prerelease-check-version.yml
+
+on: [release]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: check version
+        env:
+          tag: ${{ github.event.release.tag_name }}
+        run: |
+          version="${tag#v}"
+          current=$(node -p "require('./package.json').version")
+
+          if [[ "$version" != "$current" ]]; then
+            echo "::error package.json version (current) differs from tag ($version)
+            exit 1
+          fi
