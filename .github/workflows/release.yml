@@ -11,9 +11,7 @@ jobs:
       rebuild: ${{ steps.download.outcome == 'failure' }}
     permissions:
       contents: read
-      packages: write
-      attestations: write
-      id-token: write
+      packages: read
     steps:
       - uses: actions/checkout@v6
       - name: login registry
@@ -39,6 +37,11 @@ jobs:
   build:
     needs: fetch
     if: ${{ needs.fetch.outputs.rebuild == 'true' }}
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     uses: ./.github/workflows/prerelease.yml
     secrets: inherit
 
