@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/estellise-yukihime/portfolio-ui:${VERSION}
+    image: ghcr.io/snow-platform/portfolio-ui:${VERSION}
     cpu_count: 1
     mem_limit: 512M
     mem_reservation: 256M
