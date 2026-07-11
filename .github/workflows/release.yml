@@ -11,7 +11,9 @@ jobs:
       rebuild: ${{ steps.download.outcome == 'failure' }}
     permissions:
       contents: read
-      packages: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - name: login registry
