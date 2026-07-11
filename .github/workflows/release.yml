@@ -47,7 +47,7 @@ jobs:
 
   deploy:
     needs: [fetch, build]
-    if: ${{ always() && (needs.build.result == 'skipped' || needs.build.result == 'success') }}
+    if: ${{ always() && ( needs.fetch.result == 'success' && (needs.build.result == 'skipped' || needs.build.result == 'success')) }}
     runs-on: desperation
     steps:
       - uses: actions/checkout@v6
