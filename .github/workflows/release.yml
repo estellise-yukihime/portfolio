@@ -37,12 +37,12 @@ jobs:
   build:
     needs: fetch
     if: ${{ needs.fetch.outputs.rebuild == 'true' }}
+    uses: ./.github/workflows/prerelease.yml
     permissions:
       contents: read
       packages: write
       attestations: write
       id-token: write
-    uses: ./.github/workflows/prerelease.yml
     secrets: inherit
 
   deploy:
