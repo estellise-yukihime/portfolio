@@ -3,8 +3,6 @@ services:
     image: ghcr.io/snow-platform/portfolio-ui:${VERSION}
     build:
       context: .
-      tags:
-        - ghcr.io/snow-platform/portfolio-ui:${TAG}
       platforms:
         - linux/amd64
         - linux/arm64
