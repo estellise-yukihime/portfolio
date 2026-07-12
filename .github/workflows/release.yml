@@ -27,7 +27,7 @@ jobs:
           TAG: ${{ github.event.release.tag_name }}
         run: |
           VERSION=${TAG#v}
-          docker pull ghcr.io/${{ github.repository }}-ui:$VERSION
+          docker buildx imagetools inspect ghcr.io/${{ github.repository }}-ui:$VERSION
 
           if [[ $? -ne 0 ]]; then
             echo "::error failed to download image"
