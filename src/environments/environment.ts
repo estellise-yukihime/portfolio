@@ -1,6 +1,8 @@
+// production environment
+
 export const environment = {
   api: {
-    url: 'http://localhost:4200',
+    url: 'https://profile.carlocaballero.com',
     version: 'v1'
   }
 }
