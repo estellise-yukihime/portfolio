@@ -1,4 +1,4 @@
-name: prerelease-check-version.yml
+name: "release: check version"
 
 on: workflow_call
 
