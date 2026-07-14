@@ -6,7 +6,7 @@ on:
 
 jobs:
   check:
-    uses: release-check-version.yml
+    uses: ./.github/workflows/release-check-version.yml
 
   build:
     name: build & upload
