@@ -143,4 +143,22 @@
     content: '—';
     @apply text-accent;
   }
+
+  .prose pre {
+    @apply font-mono text-[13.5px] leading-[1.7] border border-white/[0.08] rounded-xl px-[22px] py-5 overflow-x-auto text-content/85 mt-2 mb-7 whitespace-pre;
+    background: oklch(18.5% 0.011 254);
+  }
+
+  .prose pre .tok-k {
+    color: oklch(70% 0.18 277);
+  }
+
+  .prose pre .tok-s {
+    color: oklch(80% 0.12 182);
+  }
+
+  .prose pre .tok-c {
+    color: oklch(52% 0.02 252);
+    font-style: italic;
+  }
 }
