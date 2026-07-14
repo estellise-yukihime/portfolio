@@ -19,7 +19,7 @@
 
     <!-- LIST -->
     <section class="max-w-list mx-auto px-8 pt-3 pb-20">
-      <div class="flex flex-col">
+      <div class="flex flex-col border-b border-white/[0.08]">
         @for (a of p.articles; track a.id; let last = $last) {
           <a
             appReveal
@@ -40,6 +40,8 @@
           </a>
         }
       </div>
+
+      <app-pagination [total]="0" [size]="0" [page]="0"></app-pagination>
     </section>
   </main>
 

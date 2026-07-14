@@ -4,10 +4,11 @@ import { Nav } from '../../shared/nav/nav'
 import { Footer } from '../../shared/footer/footer'
 import { Reveal } from '../../shared/reveal'
 import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../../data/portfolio'
+import { PaginationComponent } from '../../../../design/angular/app/shared/pagination.component'
 
 @Component({
   selector: 'app-articles',
-  imports: [RouterLink, Nav, Footer, Reveal],
+  imports: [RouterLink, Nav, Footer, Reveal, PaginationComponent],
   templateUrl: './articles.html',
   styleUrl: './articles.css'
 })
