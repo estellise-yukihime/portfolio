@@ -5,6 +5,9 @@ import { ArticlesItem } from './page/articles-item/articles-item'
 import { Career } from './page/career/career'
 import { ProfilesItem } from './page/profiles-item/profiles-item'
 import { Error } from './page/error/error'
+import { Profiles } from './page/profiles/profiles'
+import { Learn } from './page/learn/learn'
+import { LearnItem } from './page/learn-item/learn-item'
 import { indexNaviResolver } from './resolvers/profile-resolver/index-navi-resolver'
 import { profileNaviResolver } from './resolvers/profile-resolver/profile-navi-resolver'
 import { indexHeroResolver } from './resolvers/profile-resolver/index-hero-resolver'
@@ -36,8 +39,8 @@ export const routes: Routes = [
   },
   {
     path: 'profiles',
-    redirectTo: `profiles/33a88871-2a53-47db-98a3-c479c196f4f5`,
-    pathMatch: 'full'
+    component: Profiles,
+    title: 'Profile'
   },
   {
     path: 'profiles/:profileId',
@@ -67,6 +70,22 @@ export const routes: Routes = [
     path: 'profiles/:profileId/articles/:articleId',
     component: ArticlesItem,
     title: 'Article',
+    resolve: {
+      ...profileProfileResolver
+    }
+  },
+  {
+    path: 'profiles/:profileId/learn',
+    component: Learn,
+    title: 'Learn',
+    resolve: {
+      ...profileProfileResolver
+    }
+  },
+  {
+    path: 'profiles/:profileId/learn/:learnId',
+    component: LearnItem,
+    title: 'Learn',
     resolve: {
       ...profileProfileResolver
     }
