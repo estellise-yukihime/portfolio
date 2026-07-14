@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { profile }   from '../data/portfolio';
+import { profile } from '../data/portfolio';
 
 @Component({
   selector: 'app-footer',

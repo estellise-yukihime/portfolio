@@ -1,15 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ActivatedRoute }                              from '@angular/router';
-import { NavComponent }                                from '../shared/nav.component';
-import { FooterComponent }                             from '../shared/footer.component';
-import { RevealDirective }                             from '../shared/reveal.directive';
+import { ActivatedRoute } from '@angular/router';
+import { NavComponent } from '../shared/nav.component';
+import { FooterComponent } from '../shared/footer.component';
+import { RevealDirective } from '../shared/reveal.directive';
+import { PaginationComponent } from '../shared/pagination.component';
 import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../data/portfolio';
 
 @Component({
   selector: 'app-articles',
   standalone: true,
-  imports: [RouterLink, NavComponent, FooterComponent, RevealDirective],
+  imports: [RouterLink, NavComponent, FooterComponent, RevealDirective, PaginationComponent],
   template: `
     <div class="min-h-screen flex flex-col">
       <app-nav [profileId]="profileId"></app-nav>
@@ -33,13 +34,12 @@ import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../data/portfolio';
 
         <!-- LIST -->
         <section class="max-w-list mx-auto px-8 pt-3 pb-20">
-          <div class="flex flex-col">
-            @for (a of p.articles; track a.id; let last = $last) {
+          <div class="flex flex-col border-b border-white/[0.08]">
+            @for (a of pageItems; track a.id) {
               <a
                 appReveal
                 [routerLink]="['/profiles', profileId, 'articles', a.id]"
                 class="group block py-8 border-t border-white/[0.08] transition-[padding] duration-200 hover:pl-3.5"
-                [class.border-b]="last"
               >
                 <div class="flex items-center gap-4 mb-3">
                   <span class="font-mono text-[12.5px]" [class]="accentText(a.accent)">{{
@@ -59,6 +59,13 @@ import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../data/portfolio';
               </a>
             }
           </div>
+
+          <app-pagination
+            [total]="p.articles.length"
+            [size]="pageSize"
+            [page]="page"
+            (pageChange)="page = $event"
+          ></app-pagination>
         </section>
       </main>
 
@@ -70,6 +77,12 @@ export class ArticlesComponent {
   private route = inject(ActivatedRoute);
   readonly profileId = this.route.snapshot.paramMap.get('profileId') ?? DEFAULT_PROFILE_ID;
   readonly p = getProfile(this.profileId);
+  readonly pageSize = 3;
+  page = 1;
+
+  get pageItems() {
+    return this.p.articles.slice((this.page - 1) * this.pageSize, this.page * this.pageSize);
+  }
 
   accentText(a: Accent): string {
     return { accent: 'text-accent', primary: 'text-primary', secondary: 'text-secondary' }[a];

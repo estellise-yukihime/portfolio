@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink }                  from '@angular/router';
-import { NavComponent }                                from '../shared/nav.component';
-import { FooterComponent }                             from '../shared/footer.component';
-import { RevealDirective }                             from '../shared/reveal.directive';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NavComponent } from '../shared/nav.component';
+import { FooterComponent } from '../shared/footer.component';
+import { RevealDirective } from '../shared/reveal.directive';
 import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../data/portfolio';
 
 @Component({

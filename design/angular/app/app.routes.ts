@@ -1,5 +1,4 @@
-import { Routes }             from '@angular/router';
-import { DEFAULT_PROFILE_ID } from './data/portfolio';
+import { Routes } from '@angular/router';
 
 // Site structure (matches the original design plan):
 //   /                                          Home
@@ -12,6 +11,12 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./pages/home.component').then((m) => m.HomeComponent),
     title: 'Maya Chen — Software Engineer',
+  },
+  {
+    path: 'profiles',
+    loadComponent: () => import('./pages/profiles.component').then((m) => m.ProfilesComponent),
+    title: 'Profiles — Maya Chen',
+    pathMatch: 'full',
   },
   {
     path: 'profiles/:profileId',
@@ -33,8 +38,17 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/article.component').then((m) => m.ArticleComponent),
     title: 'Article — Maya Chen',
   },
-  // Convenience redirect so bare /profiles resolves to the single profile this site serves.
-  { path: 'profiles', redirectTo: `profiles/${DEFAULT_PROFILE_ID}`, pathMatch: 'full' },
+  {
+    path: 'learnings',
+    loadComponent: () => import('./pages/learnings.component').then((m) => m.LearningsComponent),
+    title: 'Learnings — Maya Chen',
+    pathMatch: 'full',
+  },
+  {
+    path: 'learnings/:learningId',
+    loadComponent: () => import('./pages/learning.component').then((m) => m.LearningComponent),
+    title: 'Learning — Maya Chen',
+  },
   // 404 — anything unmatched renders the Not Found page.
   {
     path: '**',
