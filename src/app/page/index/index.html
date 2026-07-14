@@ -25,7 +25,7 @@
             View profile <span class="font-mono">→</span>
           </a>
           <a
-            [routerLink]="['/profiles', profileId().id, 'articles']"
+            [routerLink]="['/articles', profileId().id, 'articles']"
             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] border border-white/[0.16] font-medium text-[15px] transition-colors hover:bg-white/[0.05] hover:border-white/[0.3]">
             Read articles</a>
         </div>
@@ -39,25 +39,81 @@
         <span class="font-mono text-[13px] text-faint">04 sections</span>
       </div>
       <div class="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
-        @for (link of indexLinks; track link.title) {
-          <a
-            appReveal
-            [routerLink]="link.route"
-            class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
-            <div class="flex items-center justify-between mb-12">
+        <!-- PROFILE -->
+        <a appReveal
+           [routerLink]="['/profiles', this.profileId().id]"
+           class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
+          <div class="flex items-center justify-between mb-12">
               <span
-                class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm"
-                [class]="link.badgeClass">
-                {{ link.number }}
+                class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm bg-secondary/[0.14] text-secondary">
+                01
               </span>
-              <span class="font-mono text-lg text-faint">↗</span>
-            </div>
-            <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
-              {{ link.title }}
-            </h3>
-            <p class="text-[14.5px] leading-normal text-muted font-light">{{ link.desc }}</p>
-          </a>
-        }
+            <span class="font-mono text-lg text-faint">↗</span>
+          </div>
+          <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
+            Profile
+          </h3>
+          <p class="text-[14.5px] leading-normal text-muted font-light">
+            Career summary, skills, certifications, education, and social links.
+          </p>
+        </a>
+
+        <!-- Work & Projects -->
+        <a appReveal
+           [routerLink]="['/profiles', this.profileId().id, 'career']"
+           class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
+          <div class="flex items-center justify-between mb-12">
+              <span
+                class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm bg-primary/[0.16] text-primary">
+                02
+              </span>
+            <span class="font-mono text-lg text-faint">↗</span>
+          </div>
+          <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
+            Work & Projects
+          </h3>
+          <p class="text-[14.5px] leading-normal text-muted font-light">
+            Career timeline with project details and tech stacks.
+          </p>
+        </a>
+
+        <!-- Articles -->
+        <a appReveal
+           [routerLink]="['/profiles', this.profileId().id, 'articles']"
+           class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
+          <div class="flex items-center justify-between mb-12">
+              <span
+                class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm bg-accent/[0.14] text-accent">
+                03
+              </span>
+            <span class="font-mono text-lg text-faint">↗</span>
+          </div>
+          <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
+            Articles
+          </h3>
+          <p class="text-[14.5px] leading-normal text-muted font-light">
+            Writing about developer experience, building software, and sharing knowledge.
+          </p>
+        </a>
+
+        <!-- Learning -->
+        <a appReveal
+           [routerLink]="['/profiles', this.profileId().id, 'learn']"
+           class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
+          <div class="flex items-center justify-between mb-12">
+              <span
+                class="w-10 h-10 rounded-[10px] grid place-items-center font-mono text-sm bg-info/[0.14] text-info">
+                04
+              </span>
+            <span class="font-mono text-lg text-faint">↗</span>
+          </div>
+          <h3 class="font-display font-semibold text-[22px] tracking-tight mb-2">
+            Learning
+          </h3>
+          <p class="text-[14.5px] leading-normal text-muted font-light">
+            Pursuing knowledge and excellence, a place to learn and review.
+          </p>
+        </a>
       </div>
     </section>
   </main>
