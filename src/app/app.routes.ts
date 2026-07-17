@@ -11,22 +11,19 @@ import { LearnItem } from './page/learn-item/learn-item'
 import { indexNaviResolver } from './resolvers/profile-resolver/index-navi-resolver'
 import { profileNaviResolver } from './resolvers/profile-resolver/profile-navi-resolver'
 import { indexHeroResolver } from './resolvers/profile-resolver/index-hero-resolver'
-import { indexFootResolver } from './resolvers/profile-resolver/index-foot-resolver'
-import { profileFootResolver } from './resolvers/profile-resolver/profile-foot-resolver'
 import { indexIdResolver } from './resolvers/profile-resolver/index-id-resolver'
 import { profileIdResolver } from './resolvers/profile-resolver/profile-id-resolver'
+import { profilesCardResolver } from './resolvers/profile-resolver/profiles-card-resolver'
 
 const profileIndexResolver = {
   profileId: indexIdResolver,
   profileInfo: indexNaviResolver,
-  profileHero: indexHeroResolver,
-  profileLink: indexFootResolver
+  profileHero: indexHeroResolver
 }
 
 const profileProfileResolver = {
   profileId: profileIdResolver,
-  profileInfo: profileNaviResolver,
-  profileLink: profileFootResolver
+  profileInfo: profileNaviResolver
 }
 
 export const routes: Routes = [
@@ -40,7 +37,8 @@ export const routes: Routes = [
   {
     path: 'profiles',
     component: Profiles,
-    title: 'Profile'
+    title: 'Profile',
+    resolve: { paginated: profilesCardResolver }
   },
   {
     path: 'profiles/:profileId',
