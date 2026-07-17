@@ -9,5 +9,5 @@ import { ProfileNavi } from '../../models/profile-navi'
 export class Footer {
   private readonly _route = inject(ActivatedRoute)
 
-  readonly profileLink = (this._route.snapshot.data['profileInfo'] as ProfileNavi).socials
+  readonly profileLink = (this._route.snapshot.data['profileNavi'] as ProfileNavi).socials
 }

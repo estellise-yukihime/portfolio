@@ -16,7 +16,7 @@ export class Nav {
   private readonly _route = inject(ActivatedRoute)
 
   readonly profileId = this._route.snapshot.data['profileId'] as ProfileId
-  readonly profileNavi = this._route.snapshot.data['profileInfo'] as ProfileNavi
+  readonly profileNavi = this._route.snapshot.data['profileNavi'] as ProfileNavi
 
   get initials(): string {
     const initialF = this.profileNavi.first_name?.slice(0, 1)

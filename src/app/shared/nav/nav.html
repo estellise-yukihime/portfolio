@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-50 backdrop-blur-md bg-base-100/70 border-b border-white/[0.07]">
   <nav class="max-w-shell mx-auto px-8 py-[18px] flex items-center justify-between">
-    <a routerLink="/" class="flex items-center gap-3">
+    <a [routerLink]="['/profiles', profileId.id, 'hero']" class="flex items-center gap-3">
       <span
         class="w-[34px] h-[34px] rounded-lg grid place-items-center bg-primary font-display font-bold text-[15px] text-primary-content">
         {{ initials }}
@@ -11,14 +11,14 @@
     </a>
     <div class="flex items-center gap-7">
       <a
-        routerLink="/"
+        [routerLink]="['/profiles', profileId.id, 'hero']"
         routerLinkActive="text-content"
         [routerLinkActiveOptions]="{ exact: true }"
         class="text-sm text-muted hover:text-content transition-colors max-sm:hidden">
         Home
       </a>
       <a
-        [routerLink]="['/profiles', profileId.id]"
+        [routerLink]="['/profiles', profileId.id, 'info']"
         routerLinkActive="text-content"
         [routerLinkActiveOptions]="{ exact: true }"
         class="text-sm text-muted hover:text-content transition-colors">
