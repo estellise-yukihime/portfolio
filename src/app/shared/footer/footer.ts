@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core'
-import { ProfileLink } from '../../models/profile-link'
 import { ActivatedRoute } from '@angular/router'
+import { ProfileNavi } from '../../models/profile-navi'
 
 @Component({
   selector: 'app-footer',
@@ -9,5 +9,5 @@ import { ActivatedRoute } from '@angular/router'
 export class Footer {
   private readonly _route = inject(ActivatedRoute)
 
-  readonly profileLink = this._route.snapshot.data['profileLink'] as ProfileLink[]
+  readonly profileLink = (this._route.snapshot.data['profileInfo'] as ProfileNavi).socials
 }
