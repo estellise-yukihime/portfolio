@@ -8,31 +8,22 @@ import { Error } from './page/error/error'
 import { Profiles } from './page/profiles/profiles'
 import { Learn } from './page/learn/learn'
 import { LearnItem } from './page/learn-item/learn-item'
-import { indexNaviResolver } from './resolvers/profile-resolver/index-navi-resolver'
 import { profileNaviResolver } from './resolvers/profile-resolver/profile-navi-resolver'
-import { indexHeroResolver } from './resolvers/profile-resolver/index-hero-resolver'
-import { indexIdResolver } from './resolvers/profile-resolver/index-id-resolver'
+import { profileHeroResolver } from './resolvers/profile-resolver/profile-hero-resolver'
 import { profileIdResolver } from './resolvers/profile-resolver/profile-id-resolver'
 import { profilesCardResolver } from './resolvers/profile-resolver/profiles-card-resolver'
-
-const profileIndexResolver = {
-  profileId: indexIdResolver,
-  profileInfo: indexNaviResolver,
-  profileHero: indexHeroResolver
-}
+import { indexRandomRedirect } from './redirectFn/index-random-redirect'
 
 const profileProfileResolver = {
   profileId: profileIdResolver,
-  profileInfo: profileNaviResolver
+  profileNavi: profileNaviResolver
 }
 
 export const routes: Routes = [
   {
     path: '',
-    component: Index,
-    title: 'Software Developer',
-    data: { profileId: '33a88871-2a53-47db-98a3-c479c196f4f5' },
-    resolve: profileIndexResolver
+    pathMatch: 'full',
+    redirectTo: indexRandomRedirect
   },
   {
     path: 'profiles',
@@ -41,7 +32,16 @@ export const routes: Routes = [
     resolve: { paginated: profilesCardResolver }
   },
   {
-    path: 'profiles/:profileId',
+    path: 'profiles/:profileId/hero',
+    component: Index,
+    title: 'Hero',
+    resolve: {
+      ...profileProfileResolver,
+      profileHero: profileHeroResolver
+    }
+  },
+  {
+    path: 'profiles/:profileId/info',
     component: ProfilesItem,
     title: 'Profile',
     resolve: {
