@@ -16,37 +16,37 @@
             to see their cards and get a glimpse of their story.
           </p>
         </div>
-        <span class="font-mono text-[13px] text-faint whitespace-nowrap">1 people</span>
+        <span class="font-mono text-[13px] text-faint whitespace-nowrap">{{ paginated().total }} people</span>
       </div>
     </section>
 
     <!-- GRID -->
     <section class="max-w-shell mx-auto px-8 pt-3 pb-24">
       <div class="grid gap-5 [grid-template-columns:repeat(auto-fill,minmax(320px,1fr))]">
-        @for (x of items; track x.name) {
+        @for (card of profilesCard; track card.id) {
           <a appReveal
-             [routerLink]="['/profiles', x.id]"
+             [routerLink]="['/profiles', card.external_id]"
              class="group flex flex-col p-[26px] rounded-2xl border border-white/[0.08] bg-base-200 transition-all duration-200 hover:border-white/20 hover:bg-base-300 hover:-translate-y-[3px]">
             <div class="flex items-center gap-4">
                   <span
                     class="w-[60px] h-[60px] rounded-full grid place-items-center flex-none font-display font-semibold text-[17px] shadow-[0_0_0_1px_oklch(100%_0_0_/_0.1)] bg-accent/15 text-accent">
-                    {{ x.nameInitial }}
+                    {{ initial(card) }}
                   </span>
               <div class="min-w-0">
                 <h2 class="font-display font-semibold text-[19px] tracking-tight leading-tight">
-                  {{ x.name }}
+                  {{ name(card) }}
                 </h2>
                 <div class="flex items-center gap-2.5 mt-[5px]">
                   <span class="w-1.5 h-1.5 rounded-full flex-none bg-accent"></span>
-                  <span class="text-[13.5px] text-muted">{{ x.title }}</span>
+                  <span class="text-[13.5px] text-muted">{{ card.title }}</span>
                 </div>
               </div>
             </div>
 
-            <p class="text-[14.5px] leading-relaxed text-muted font-light mt-5">{{ x.summary }}</p>
+            <p class="text-[14.5px] leading-relaxed text-muted font-light mt-5">{{ card.about }}</p>
 
             <div class="flex flex-wrap gap-[7px] mt-5">
-              @for (t of x.stack; track t) {
+              @for (t of skills(card); track t) {
                 <span
                   class="font-mono text-[11.5px] px-2.5 py-1 rounded-full border border-white/10 text-muted">
                   {{ t }}
@@ -56,14 +56,14 @@
 
             <div
               class="flex items-center justify-between mt-6 pt-[18px] border-t border-white/[0.07]">
-              <span class="font-mono text-[12px] text-faint">{{ x.location }}</span>
+              <span class="font-mono text-[12px] text-faint">{{ card.state }}</span>
               <span class="font-mono text-[13px] text-accent">View →</span>
             </div>
           </a>
         }
       </div>
 
-      <app-pagination [total]="0" [size]="0" [page]="0"></app-pagination>
+      <app-pagination [total]="paginated().total" [size]="paginated().size" [page]="paginated().page"></app-pagination>
     </section>
   </main>
 
