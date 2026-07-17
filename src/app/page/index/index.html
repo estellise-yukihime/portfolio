@@ -20,12 +20,12 @@
         </p>
         <div class="mt-11 flex flex-wrap gap-3.5">
           <a
-            [routerLink]="['/profiles', profileId().id]"
+            [routerLink]="['/profiles', profileId().id, 'info']"
             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] bg-primary text-primary-content font-medium text-[15px] transition-transform hover:-translate-y-0.5 hover:shadow-[0_12px_30px_oklch(58%_0.233_277.117_/_0.35)]">
             View profile <span class="font-mono">→</span>
           </a>
           <a
-            [routerLink]="['/articles', profileId().id, 'articles']"
+            [routerLink]="['/profiles', profileId().id, 'articles']"
             class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-[10px] border border-white/[0.16] font-medium text-[15px] transition-colors hover:bg-white/[0.05] hover:border-white/[0.3]">
             Read articles</a>
         </div>
@@ -41,7 +41,7 @@
       <div class="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(300px,1fr))]">
         <!-- PROFILE -->
         <a appReveal
-           [routerLink]="['/profiles', this.profileId().id]"
+           [routerLink]="['/profiles', this.profileId().id, 'info']"
            class="block p-[30px] rounded-2xl border border-white/[0.08] bg-base-200 transition-colors hover:border-white/[0.2] hover:bg-base-300">
           <div class="flex items-center justify-between mb-12">
               <span
