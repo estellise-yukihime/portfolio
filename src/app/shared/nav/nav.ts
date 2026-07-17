@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core'
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router'
+import { ProfileId } from '../../models/profile-id'
+import { ProfileNavi } from '../../models/profile-navi'
 
 /**
  * Sticky top navigation. Pass the current profileId so the section links resolve
@@ -13,17 +15,17 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router'
 export class Nav {
   private readonly _route = inject(ActivatedRoute)
 
-  readonly profileId = this._route.snapshot.data['profileId']
-  readonly profileInfo = this._route.snapshot.data['profileInfo']
+  readonly profileId = this._route.snapshot.data['profileId'] as ProfileId
+  readonly profileNavi = this._route.snapshot.data['profileInfo'] as ProfileNavi
 
   get initials(): string {
-    const initialF = this.profileInfo.first_name?.slice(0, 1)
-    const initialL = this.profileInfo.last_name?.slice(0, 1)
+    const initialF = this.profileNavi.first_name?.slice(0, 1)
+    const initialL = this.profileNavi.last_name?.slice(0, 1)
 
     return `${initialF}${initialL}`.toUpperCase()
   }
 
   get name(): string {
-    return `${this.profileInfo.first_name} ${this.profileInfo.last_name}`
+    return `${this.profileNavi.first_name} ${this.profileNavi.last_name}`
   }
 }
