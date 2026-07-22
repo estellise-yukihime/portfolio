@@ -6,6 +6,7 @@ import { ProfileHero } from '../../../models/profile-hero'
 import { ProfileNavi } from '../../../models/profile-navi'
 import { Paginated } from '../../../models/paginated'
 import { ProfileCard } from '../../../models/profile-card'
+import { ProfilePlus } from '../../../models/profile-plus'
 
 @Service()
 export class ProfileApi {
@@ -26,6 +27,12 @@ export class ProfileApi {
   getProfileHero(id: string): Observable<ProfileHero> {
     return this._httpClient.get<ProfileHero>(
       `${environment.api.url}/api/${environment.api.version}/profiles/${id}/hero`
+    )
+  }
+
+  getProfilePlus(id: string): Observable<ProfilePlus> {
+    return this._httpClient.get<ProfilePlus>(
+      `${environment.api.url}/api/${environment.api.version}/profiles/${id}/plus`
     )
   }
 }
