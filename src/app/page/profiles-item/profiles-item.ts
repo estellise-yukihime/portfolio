@@ -1,9 +1,22 @@
-import { Component, inject } from '@angular/core'
-import { ActivatedRoute, RouterLink } from '@angular/router'
-import { Nav }                        from '../../shared/nav/nav'
-import { Footer }                     from '../../shared/footer/footer'
+import { Component, input } from '@angular/core'
+import { RouterLink } from '@angular/router'
+import { Nav } from '../../shared/nav/nav'
+import { Footer } from '../../shared/footer/footer'
 import { Reveal } from '../../shared/reveal'
-import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../../data/portfolio'
+import { ProfilePlus } from '../../models/profile-plus'
+import { ProfileId } from '../../models/profile-id'
+import { Accent, Colors } from '../../services/color/accent.service'
+import { CareerProject } from '../../models/career-project'
+
+type Skill = {
+  category: string
+  items: string[]
+}
+
+type CareerPurj = {
+  id: number
+  name: string
+}
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +25,63 @@ import { DEFAULT_PROFILE_ID, getProfile, type Accent } from '../../data/portfoli
   styleUrl: './profiles-item.css'
 })
 export class ProfilesItem {
-  private route = inject(ActivatedRoute)
-  readonly profileId = this.route.snapshot.paramMap.get('profileId') ?? DEFAULT_PROFILE_ID
-  readonly p = getProfile(this.profileId)
+  readonly accent = new Accent(Colors.text)
 
-  accentText(a: Accent): string {
-    return { accent: 'text-accent', primary: 'text-primary', secondary: 'text-secondary' }[a]
+  readonly profileId = input.required<ProfileId>()
+  readonly profilePlus = input.required<ProfilePlus>()
+
+  get name(): string {
+    const p = this.profilePlus()
+
+    return [p.first_name, p.last_name].filter(Boolean).join(' ')
+  }
+
+  get klan(): string {
+    const p = this.profilePlus()
+    return [p.stack, p.title, p.state].filter(Boolean).join(' · ')
+  }
+
+  get sill(): Skill[] {
+    const p = this.profilePlus()
+    const map = new Map<string, string[]>()
+
+    for (const skill of p.skills ?? []) {
+      if (!skill.category || !skill.name) {
+        continue
+      }
+
+      map.set(skill.category, [...(map.get(skill.category) ?? []), skill.name])
+    }
+
+    return Array.from(map, ([key, val]) => ({
+      category: key,
+      items: val
+    }))
+  }
+
+  purj(value: CareerProject[] | null): CareerPurj[] {
+    if (!value) {
+      return []
+    }
+
+    return value.sort((a, b) => b.significance - a.significance)
+      .slice(0, 3)
+      .map(x => ({ id: x.id, name: x.title ?? '' }))
+  }
+
+  moth(value: string | null): string {
+    if (!value) {
+      return ''
+    }
+
+    return new Date(value).toLocaleString('default', { month: 'short' })
+  }
+
+  year(value: string | null): string {
+    if (!value) {
+      return ''
+    }
+
+    return new Date(value).getFullYear().toString()
   }
 }
