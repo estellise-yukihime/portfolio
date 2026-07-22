@@ -13,6 +13,7 @@ import { profileHeroResolver } from './resolvers/profile-resolver/profile-hero-r
 import { profileIdResolver } from './resolvers/profile-resolver/profile-id-resolver'
 import { profilesCardResolver } from './resolvers/profile-resolver/profiles-card-resolver'
 import { indexRandomRedirect } from './redirectFn/index-random-redirect'
+import { profilePlusResolver } from './resolvers/profile-resolver/profile-plus-resolver'
 
 const profileProfileResolver = {
   profileId: profileIdResolver,
@@ -45,7 +46,8 @@ export const routes: Routes = [
     component: ProfilesItem,
     title: 'Profile',
     resolve: {
-      ...profileProfileResolver
+      ...profileProfileResolver,
+      profilePlus: profilePlusResolver
     }
   },
   {
