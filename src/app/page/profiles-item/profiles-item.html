@@ -33,6 +33,7 @@
             @for (s of profilePlus().socials; track s.id) {
               <a
                 [href]="s.link"
+                target="_blank"
                 class="font-mono text-[13px] px-4 py-2.5 rounded-lg border border-white/[0.14] hover:bg-white/[0.05] hover:border-white/[0.28] transition-colors">
                 {{ s.name }} ↗
               </a>
@@ -77,17 +78,17 @@
               <span class="font-mono text-[12.5px]" [class]="accent.color">
                 @if (c.leaved) {
                   {{ moth(c.joined) }} {{ year(c.joined) }} — {{ moth(c.leaved) }} {{ year(c.leaved) }}
-                }
-                @else {
+                } @else {
                   {{ moth(c.joined) }} {{ year(c.joined) }} — Present
                 }
               </span>
             </div>
             <ul
-              class="list-none mt-[18px] grid gap-x-6 gap-y-2.5 grid-cols-3">
+              class="list-none mt-[18px] grid gap-x-6 gap-y-2.5 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
               @for (x of purj(c.projects); track x.id) {
                 <li class="text-[14.5px] text-content/80 flex gap-2.5">
-                  <span class="text-faint">—</span> {{ x.name }}
+                  <span class="text-faint">—</span>
+                  {{ x.name }}
                 </li>
               }
             </ul>
